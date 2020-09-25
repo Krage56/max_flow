@@ -3,9 +3,12 @@
 #include "maxFlow.h"
 using namespace std;
 
-int main() {
+int main(int argc, char* argv[]) {
     ifstream file;
-    file.open("../maxFlowTests/test2.in", ios_base::in);
+    ofstream answer;
+    //file.open("../maxFlowTests/test1.in", ios_base::in);
+    file.open(argv[1], ios_base::in);
+    answer.open("./answer.out", ios_base::out);
     vector<vector<long long>> c = std::move(processing(&file));
     vector<vector<long long>>f(c.size());
     const long long s = 0, t = 1;
@@ -35,11 +38,12 @@ int main() {
         way = move(getPath(prior, 1, 0));
         min_flow = 0;
     }
-    for(const auto el : f){
-        for (const auto e: el){
-            cout << e << " ";
-        }
-        cout << "\n";
+    long long res = 0;
+    for (const auto e: f[0]){
+        res += e;
     }
+    answer << res;
+    file.close();
+    answer.close();
     return 0;
 }

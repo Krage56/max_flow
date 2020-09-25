@@ -27,7 +27,7 @@ vector<long long> BFS(vector<vector<long long>>&_data, long long origin, long lo
     }
     long long current = origin;
     prior[origin] = origin;
-    while (!queue.empty()) {
+    while (!queue.empty() && current != dest) {
         current = queue.front();
         queue.pop();
         if (!visited[current]) {
